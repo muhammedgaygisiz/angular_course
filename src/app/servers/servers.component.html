@@ -25,3 +25,7 @@
 </p>
 <hr *ngIf="serverCreated">
 <app-server *ngFor="let server of servers"></app-server>
+<hr>
+<div 
+    *ngFor="let server of servers; let i = index"
+    [ngStyle]="{backgroundColor: i%2===0 ? 'blue' : 'transparent'}">{{ server }}</div>
