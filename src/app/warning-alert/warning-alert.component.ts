@@ -10,7 +10,7 @@ export class AppWarningAlertComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    alert('Me like to be rendered!');
+    //alert('Me like to be rendered!');
   }
 
 }
