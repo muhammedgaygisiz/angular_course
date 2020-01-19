@@ -9,8 +9,10 @@ import {
   AfterContentChecked,
   AfterViewInit,
   AfterViewChecked,
-  OnDestroy
- } from '@angular/core';
+  OnDestroy,
+  ViewChild,
+  ElementRef
+} from '@angular/core';
 
 @Component({
   selector: 'app-server-element',
@@ -18,41 +20,21 @@ import {
   styleUrls: ['./server-element.component.css'],
 })
 export class ServerElementComponent implements
-OnInit,
-OnChanges,
-DoCheck,
-AfterContentInit,
-AfterContentChecked,
-AfterViewInit,
-AfterViewChecked,
-OnDestroy {
+  OnInit,
+  OnChanges,
+  DoCheck,
+  AfterContentInit,
+  AfterContentChecked,
+  AfterViewInit,
+  AfterViewChecked,
+  OnDestroy {
 
   constructor() {
     console.log('constructor called!');
   }
 
   @Input() element: { type: string, name: string, content: string };
-
-  ngOnDestroy(): void {
-    console.log('ngOnDestroy called');
-  }
-
-  ngAfterViewInit(): void {
-    console.log('ngAfterViewInit called');
-  }
-  ngAfterViewChecked(): void {
-    console.log('ngAfterViewChecked called');
-  }
-  ngAfterContentChecked(): void {
-    console.log('ngAfterContentChecked called');
-  }
-  ngAfterContentInit(): void {
-    console.log('ngAfterContentInit called!');
-  }
-
-  ngDoCheck(): void {
-    console.log('ngDoCheck called!');
-  }
+  @ViewChild('heading', { static: true }) header: ElementRef;
 
   ngOnChanges(changes: SimpleChanges) {
     console.log('ngOnChanges called!');
@@ -61,6 +43,29 @@ OnDestroy {
 
   ngOnInit() {
     console.log('ngOnInit called!');
+    console.log('---Text content: ' + this.header.nativeElement.textContent);
   }
 
+  ngDoCheck(): void {
+    console.log('ngDoCheck called!');
+  }
+
+  ngAfterContentInit(): void {
+    console.log('ngAfterContentInit called!');
+  }
+  ngAfterContentChecked(): void {
+    console.log('ngAfterContentChecked called');
+  }
+
+  ngAfterViewInit(): void {
+    console.log('ngAfterViewInit called');
+    console.log('---Text content: ' + this.header.nativeElement.textContent);
+  }
+  ngAfterViewChecked(): void {
+    console.log('ngAfterViewChecked called');
+  }
+
+  ngOnDestroy(): void {
+    console.log('ngOnDestroy called');
+  }
 }
