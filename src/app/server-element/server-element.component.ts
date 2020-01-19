@@ -11,7 +11,8 @@ import {
   AfterViewChecked,
   OnDestroy,
   ViewChild,
-  ElementRef
+  ElementRef,
+  ContentChild
 } from '@angular/core';
 
 @Component({
@@ -35,6 +36,7 @@ export class ServerElementComponent implements
 
   @Input() element: { type: string, name: string, content: string };
   @ViewChild('heading', { static: true }) header: ElementRef;
+  @ContentChild('contentParagraph', { static: false }) paragraph: ElementRef;
 
   ngOnChanges(changes: SimpleChanges) {
     console.log('ngOnChanges called!');
@@ -44,6 +46,7 @@ export class ServerElementComponent implements
   ngOnInit() {
     console.log('ngOnInit called!');
     console.log('---Text content: ' + this.header.nativeElement.textContent);
+    console.log('---Paragraph content: ' + this.paragraph.nativeElement.textContent);
   }
 
   ngDoCheck(): void {
@@ -52,6 +55,7 @@ export class ServerElementComponent implements
 
   ngAfterContentInit(): void {
     console.log('ngAfterContentInit called!');
+    console.log('---Paragraph content: ' + this.paragraph.nativeElement.textContent);
   }
   ngAfterContentChecked(): void {
     console.log('ngAfterContentChecked called');
