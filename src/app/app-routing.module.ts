@@ -18,15 +18,15 @@ const appRoutes: Routes = [
         ]
     },
     {
-        path: 'servers', 
+        path: 'servers',
         // canActivate: [AuthGuard],
         canActivateChild: [AuthGuard],
         component: ServersComponent, children: [
             { path: ':id', component: ServerComponent },
-            { 
-                path: ':id/edit', 
+            {
+                path: ':id/edit',
                 component: EditServerComponent,
-                canDeactivate: [CanDeactivateGuard] 
+                canDeactivate: [CanDeactivateGuard]
             }
         ]
     },
@@ -34,7 +34,7 @@ const appRoutes: Routes = [
         path: 'not-found', component: PageNotFoundComponent
     },
     {
-        path: 'something', redirectTo: '/not-found'
+        path: '**', redirectTo: '/not-found'
     }
 ];
 
