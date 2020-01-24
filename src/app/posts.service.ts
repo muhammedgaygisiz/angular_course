@@ -7,6 +7,7 @@ import { Post } from './post.model';
 
 @Injectable({ providedIn: 'root' })
 export class PostsService {
+
     constructor(private http: HttpClient) { }
 
     createAndStorePost(title: string, content: string) {
@@ -42,5 +43,7 @@ export class PostsService {
             );
     }
 
-
+    deletePosts() {
+        return this.http.delete('https://angular-course-370fd.firebaseio.com/posts.json');
+    }
 }

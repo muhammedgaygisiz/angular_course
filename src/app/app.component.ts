@@ -22,12 +22,12 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.isFetching = true;
     this.postService.fetchPosts()
-    .subscribe(
-      posts => {
-        this.isFetching = false;
-        this.loadedPosts = posts;
-      }
-    );
+      .subscribe(
+        posts => {
+          this.isFetching = false;
+          this.loadedPosts = posts;
+        }
+      );
   }
 
   onCreatePost(postData: { title: string; content: string }) {
@@ -37,15 +37,18 @@ export class AppComponent implements OnInit {
   onFetchPosts() {
     this.isFetching = true;
     this.postService.fetchPosts()
-    .subscribe(
-      posts => {
-        this.isFetching = false;
-        this.loadedPosts = posts;
-      }
-    );
+      .subscribe(
+        posts => {
+          this.isFetching = false;
+          this.loadedPosts = posts;
+        }
+      );
   }
 
   onClearPosts() {
-    // Send Http request
+    this.postService.deletePosts()
+      .subscribe(() => {
+        this.loadedPosts = [];
+      });
   }
 }
