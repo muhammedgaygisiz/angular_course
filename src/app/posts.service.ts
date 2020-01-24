@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { map, catchError } from 'rxjs/operators';
 
@@ -32,13 +32,19 @@ export class PostsService {
     }
 
     fetchPosts() {
+        const searchParams = new HttpParams()
+            .append('print', 'pretty')
+            .append('new', 'yeah');
+
         return this.http
             .get<{ [key: string]: Post }>(
                 'https://angular-course-370fd.firebaseio.com/posts.json',
                 {
                     headers: new HttpHeaders({
-                        "Custom-Header": 'Hello'
-                    })
+                        'Custom-Header': 'Hello'
+                    }),
+                    params: new HttpParams().set('print', 'pretty')
+
                 }
                 )
             .pipe(
