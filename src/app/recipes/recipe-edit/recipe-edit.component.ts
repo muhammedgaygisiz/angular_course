@@ -93,6 +93,7 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onDeleteIngredient(index: number) {
+    // To delete all elements in FormArray use fa.clear()
     (this.recipeForm.get('ingredients') as FormArray).removeAt(index);
   }
 }
