@@ -2,9 +2,11 @@ import {
     HttpInterceptor,
     HttpRequest,
     HttpHandler,
-    HttpEvent
+    HttpEvent,
+    HttpEventType
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 export class AuthInterceptorService implements HttpInterceptor {
     intercept(
@@ -17,7 +19,14 @@ export class AuthInterceptorService implements HttpInterceptor {
             headers: req.headers.append('Auth', 'xyz')
         });
 
-        return next.handle(modifiedRequest);
+        return next.handle(modifiedRequest)
+            .pipe(tap(
+                event => {
+                    if (event.type === HttpEventType.Response) {
+                        console.log('My response body: ', event.body);
+                    }
+                }
+            ));
     }
 
 }
