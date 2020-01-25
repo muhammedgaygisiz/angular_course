@@ -16,8 +16,8 @@
                 id="password">
             </div>
             <div class="btn-group">
-                <button class="btn btn-success">Sign Up</button>
-                <button class="btn btn-primary">Switch to Login</button>
+                <button class="btn btn-success" type="submit">{{ isLoginMode ? 'Login' : 'Sign Up' }}</button>
+                <button class="btn btn-primary" (click)="onSwitchMode()" type="button">Switch to {{ isLoginMode ? 'Sign Up' : 'Login' }}</button>
             </div>
         </form>
     </div>
