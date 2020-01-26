@@ -5,7 +5,10 @@
             *ngIf="error">
             <p>{{ error }}</p>
         </div> -->
-        <app-alert [message]="error" *ngIf="error"></app-alert>
+
+        <app-alert [message]="error" *ngIf="error"
+        (close)="onHandleError()"></app-alert>
+
         <div
         style="text-align: center;"
         *ngIf="isLoading">
