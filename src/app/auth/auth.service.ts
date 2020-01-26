@@ -76,17 +76,17 @@ export class AuthService {
                 returnSecureToken: true,
             }
         )
-            .pipe(
-                catchError(this.handleError),
-                tap(response => {
-                    this.handleAuthentication(
-                        response.email,
-                        response.localId,
-                        response.idToken,
-                        +response.expiresIn
-                    );
-                })
-            );
+        .pipe(
+            catchError(this.handleError),
+            tap(response => {
+                this.handleAuthentication(
+                    response.email,
+                    response.localId,
+                    response.idToken,
+                    +response.expiresIn
+                );
+            })
+        );
     }
 
     private handleError(errorRes: HttpErrorResponse) {
