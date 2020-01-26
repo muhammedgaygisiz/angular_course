@@ -9,6 +9,7 @@ import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { RecipeStartComponent } from './recipe-start/recipe-start.component';
 import { RecipesComponent } from './recipes.component';
 import { RouterModule } from '@angular/router';
+import { RecipesRoutingModule } from './recipes-routing..module';
 
 
 @NgModule({
@@ -22,17 +23,10 @@ import { RouterModule } from '@angular/router';
     ],
     imports: [
         RouterModule,
+        RecipesRoutingModule,
         CommonModule,
         ReactiveFormsModule,
     ],
-    exports: [
-        RecipesComponent,
-        RecipeListComponent,
-        RecipeDetailComponent,
-        RecipeItemComponent,
-        RecipeStartComponent,
-        RecipeEditComponent,
-    ]
 })
 export class RecipesModule {
 
