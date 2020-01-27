@@ -22,11 +22,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   constructor(
     private slService: ShoppingListService,
     private store: Store<fromShoppingList.AppState>
-<<<<<<< HEAD
-  ) { }
-=======
     ) { }
->>>>>>> temp
 
   ngOnInit() {
     this.subscription = this.slService.startedEditing
