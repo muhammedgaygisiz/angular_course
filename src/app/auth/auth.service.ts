@@ -68,7 +68,7 @@ export class AuthService {
             expirationDate
         );
 
-        this.store.dispatch(new AuthActions.Login({
+        this.store.dispatch(new AuthActions.AuthenticateSuccess({
             email,
             userId,
             token,
@@ -152,7 +152,7 @@ export class AuthService {
         );
 
         if (loadedUser.token) {
-            this.store.dispatch(new AuthActions.Login({
+            this.store.dispatch(new AuthActions.AuthenticateSuccess({
                 email: loadedUser.email,
                 userId: loadedUser.id,
                 token: loadedUser.token,
