@@ -19,9 +19,9 @@ import { LoggingService } from '../logging.service';
         ]),
         SharedModule
     ],
-    providers: [
-        LoggingService
-    ]
+    // providers: [
+    //     LoggingService
+    // ]
 })
 export class ShoppingListModule {
 
