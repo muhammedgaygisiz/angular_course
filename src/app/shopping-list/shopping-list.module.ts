@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { ShoppingEditComponent } from './shopping-edit/shopping-edit.component';
 import { ShoppingListComponent } from './shopping-list.component';
+import { LoggingService } from '../logging.service';
 
 
 @NgModule({
@@ -17,6 +18,9 @@ import { ShoppingListComponent } from './shopping-list.component';
             { path: '', component: ShoppingListComponent }
         ]),
         SharedModule
+    ],
+    providers: [
+        LoggingService
     ]
 })
 export class ShoppingListModule {
