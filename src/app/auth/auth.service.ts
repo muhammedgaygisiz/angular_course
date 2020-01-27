@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, tap } from 'rxjs/operators';
-import { throwError, Subject, BehaviorSubject } from 'rxjs';
-
-import { User } from '../user.model';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { User } from '../user.model';
+
+import { environment } from '../../environments/environment';
 
 export interface AuthResponseData {
     idToken: string;
@@ -18,7 +19,6 @@ export interface AuthResponseData {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-    private webApiKey = '...';
     private tokenExpirationTimer: any;
     user = new BehaviorSubject<User>(null);
 
