@@ -25,6 +25,7 @@ export function shoppingListReducer(
             break;
 
         default:
+            return state;
             break;
     }
 }
