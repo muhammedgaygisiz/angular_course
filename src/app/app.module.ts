@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
@@ -15,13 +16,15 @@ import { RecipeEffects } from './recipes/store/recipes.effects';
 import { SharedModule } from './shared/shared.module';
 import * as fromApp from './store/app.reducer';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule, // Also needed for animation but added by cli
+    BrowserAnimationsModule,
     HttpClientModule,
     StoreModule.forRoot(fromApp.appReducer),
     StoreDevtoolsModule.instrument({ logOnly: environment.production }),
@@ -32,7 +35,7 @@ import * as fromApp from './store/app.reducer';
       AuthEffects,
       RecipeEffects,
     ]),
-    StoreRouterConnectingModule.forRoot()
+    StoreRouterConnectingModule.forRoot(),
   ],
   bootstrap: [
     AppComponent
