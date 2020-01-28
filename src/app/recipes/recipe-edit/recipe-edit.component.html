@@ -50,7 +50,9 @@
                             </div>
                             <hr>
                             <div class="row" [@ingredientsList] *ngFor="let ingredientCtrl of controls; let i = index"
-                                [formGroupName]="i" style="margin-top: 10px">
+                                [formGroupName]="i" style="margin-top: 10px"
+                                (@ingredientsList.start)="animationStarted($event)"
+                                (@ingredientsList.done)="animationEnded($event)">
                                 <div class="col-xs-8">
                                     <input type="text" class="form-control" formControlName="name">
                                 </div>

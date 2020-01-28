@@ -174,4 +174,12 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
       this.storeSub.unsubscribe();
     }
   }
+
+  animationStarted(event) {
+    console.log(event);
+  }
+
+  animationEnded(event) {
+    console.log(event);
+  }
 }
