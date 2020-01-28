@@ -1,14 +1,11 @@
 import { Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import * as AuthActions from '../auth/store/auth.actions';
 import { AlertComponent } from '../shared/alert/alert.component';
 import { PlaceholderDirective } from '../shared/placeholder/placeholder.directive';
 import * as fromApp from '../store/app.reducer';
-import { AuthService } from './auth.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -25,8 +22,6 @@ export class AuthComponent implements OnInit, OnDestroy {
     private storeSub: Subscription;
 
     constructor(
-        private authService: AuthService,
-        private router: Router,
         private componentFactoryResolver: ComponentFactoryResolver,
         private store: Store<fromApp.AppState>,
     ) { }
@@ -52,8 +47,6 @@ export class AuthComponent implements OnInit, OnDestroy {
 
         const email = form.value.email;
         const password = form.value.password;
-
-
 
         if (this.isLoginMode) {
             this.store.dispatch(new AuthActions.LoginStart(
