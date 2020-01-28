@@ -18,8 +18,7 @@ import { Recipe } from '../recipe.model';
         backgroundColor: '#337ab7',
         borderColor: '#2e6da4'
       })),
-      transition('normal => activated', animate(300)),
-      transition('activated => normal', animate(300))
+      transition('normal <=> activated', animate(300)),
     ])
   ]
 })
