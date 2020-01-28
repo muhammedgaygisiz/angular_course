@@ -1,6 +1,9 @@
 <div class="row">
     <div class="col-xs-12">
-        <button class="btn btn-success" (click)="onNewRecipe()" [@buttonState]="state">New Recipe</button>
+        <div class="btn-group">
+            <button class="btn btn-success" (click)="onNewRecipe()" [@buttonState]="state">New Recipe</button>
+            <button class="btn btn-success" (click)="onAnimate()" [@wildState]="wildState">Animate</button>
+        </div>
     </div>
 </div>
 <hr>

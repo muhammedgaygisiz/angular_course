@@ -19,11 +19,33 @@ import { Recipe } from '../recipe.model';
         borderColor: '#2e6da4'
       })),
       transition('normal <=> activated', animate(300)),
+    ]),
+    trigger('wildState', [
+      state('normal', style({})),
+      state('activated', style({
+        backgroundColor: '#337ab7',
+        borderColor: '#2e6da4'
+      })),
+      state('shrunken', style({
+        transform: 'translateX(0) scale(0.5)'
+      })),
+      transition('normal => activated', animate(300)),
+      transition('activated => normal', animate(800)),
+      transition('shrunken <=> *', [
+        style({
+          'background-color': 'orange'
+        }),
+        animate(100, style({
+          borderRadius: '50px'
+        })),
+        animate(500)
+      ]),
     ])
   ]
 })
 export class RecipeListComponent implements OnInit, OnDestroy {
   state = 'normal';
+  wildState = 'normal';
   recipes: Recipe[];
   subscription: Subscription;
 
@@ -47,7 +69,13 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
   onNewRecipe() {
     this.state === 'normal' ? this.state = 'activated' : this.state = 'normal';
+    this.wildState === 'normal' ? this.wildState = 'activated' : this.wildState = 'normal';
+
     this.router.navigate(['new'], { relativeTo: this.route });
+  }
+
+  onAnimate() {
+    this.wildState === 'normal' ? this.wildState = 'shrunken' : this.wildState = 'normal';
   }
 
   ngOnDestroy() {

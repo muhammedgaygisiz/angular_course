@@ -4,25 +4,15 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="btn-group">
-                        <button 
-                        type="submit" 
-                        class="btn btn-success"
-                        [disabled]="!recipeForm.valid">Save</button>
-                        <button 
-                        type="button" 
-                        (click)="onCancel()"
-                        class="btn btn-danger">Cancel</button>
+                        <button type="submit" class="btn btn-success" [disabled]="!recipeForm.valid">Save</button>
+                        <button type="button" (click)="onCancel()" class="btn btn-danger">Cancel</button>
                     </div>
                     <hr>
                     <div class="row">
                         <div class="col-xs-11">
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input 
-                                type="text" 
-                                name="name"
-                                formControlName="name"
-                                class="form-control">
+                                <input type="text" name="name" formControlName="name" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -30,12 +20,8 @@
                         <div class="col-xs-11">
                             <div class="form-group">
                                 <label for="imagePath">Image URL</label>
-                                <input 
-                                type="text" 
-                                name="imagePath"
-                                formControlName="imagePath"
-                                class="form-control"
-                                #imagePath>
+                                <input type="text" name="imagePath" formControlName="imagePath" class="form-control"
+                                    #imagePath>
                             </div>
                         </div>
                     </div>
@@ -48,48 +34,31 @@
                         <div class="col-xs-11">
                             <div class="form-group">
                                 <label for="description">Description</label>
-                                <textarea 
-                                type="text" 
-                                id="description"
-                                rows="6"
-                                formControlName="description"
-                                class="form-control"></textarea>
+                                <textarea type="text" id="description" rows="6" formControlName="description"
+                                    class="form-control"></textarea>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12" formArrayName="ingredients">
-                            <div 
-                            class="row"
-                            *ngFor="let ingredientCtrl of controls; let i = index"
-                            [formGroupName]="i"
-                            style="margin-top: 10px">
+                            <div class="row" *ngFor="let ingredientCtrl of controls; let i = index" [formGroupName]="i"
+                                style="margin-top: 10px">
                                 <div class="col-xs-8">
-                                    <input 
-                                    type="text" 
-                                    class="form-control"
-                                    formControlName="name">
+                                    <input type="text" class="form-control" formControlName="name">
                                 </div>
                                 <div class="col-xs-2">
-                                    <input 
-                                    type="text" 
-                                    class="form-control"
-                                    formControlName="amount">
+                                    <input type="text" class="form-control" formControlName="amount">
                                 </div>
                                 <div class="col-xs-2">
-                                    <button 
-                                    type="button"
-                                    (click)="onDeleteIngredient(i)" 
-                                    class="btn btn-danger">X</button>
+                                    <button type="button" (click)="onDeleteIngredient(i)"
+                                        class="btn btn-danger">X</button>
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <button 
-                                    type="button"
-                                    class="btn btn-success"
-                                    (click)="onAddIngredient()">Add Ingredient</button>
+                                    <button type="button" class="btn btn-success" (click)="onAddIngredient()">Add
+                                        Ingredient</button>
                                 </div>
                             </div>
                         </div>
