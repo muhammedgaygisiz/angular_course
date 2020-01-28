@@ -1,4 +1,4 @@
-import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
+import { animate, group, keyframes, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -43,10 +43,15 @@ import * as RecipesActions from '../store/recipes.actions';
         ]))
       ]),
       transition('* => void', [
-        animate(300, style({
-          transform: 'translateX(100px)',
-          opacity: 0,
-        }))
+        group([
+          animate(300, style({
+            border: '1px solid red',
+          })),
+          animate(800, style({
+            transform: 'translateX(100px)',
+            opacity: 0,
+          }))
+        ])
       ])
     ])
   ]
