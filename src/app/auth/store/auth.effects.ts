@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { environment } from '../../../environments/environment';
-import * as AuthActions from './auth.actions';
-import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
 import { User } from 'src/app/user.model';
+import { environment } from '../../../environments/environment';
+import { AuthService } from '../auth.service';
+import * as AuthActions from './auth.actions';
 
 export interface AuthResponseData {
     idToken: string;
@@ -33,7 +33,8 @@ const handleAuthentication = (
         email,
         userId,
         token,
-        expirationDate
+        expirationDate,
+        redirect: true
     });
 };
 
@@ -131,8 +132,10 @@ export class AuthEffects {
     authRedirect = this.actions$
         .pipe(
             ofType(AuthActions.AUTHENTICATE_SUCCESS),
-            tap(() => {
-                this.router.navigate(['/']);
+            tap((authSuccessAction: AuthActions.AuthenticateSuccess) => {
+                if (authSuccessAction.payload.redirect) {
+                    this.router.navigate(['/']);
+                }
             })
         );
 
@@ -172,7 +175,8 @@ export class AuthEffects {
                         email: loadedUser.email,
                         userId: loadedUser.id,
                         token: loadedUser.token,
-                        expirationDate: new Date(userData._tokenExpirationDate)
+                        expirationDate: new Date(userData._tokenExpirationDate),
+                        redirect: false
                     });
                 }
 
