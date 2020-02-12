@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpParams, HttpEvent } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpParams, HttpEvent, HttpEventType } from '@angular/common/http';
 
 import { AuthService } from './auth.service';
 import { exhaustMap, take, map } from 'rxjs/operators';
@@ -24,12 +24,23 @@ export class AuthInterceptorService implements HttpInterceptor {
             }),
             exhaustMap(user => {
                 if (!user) {
-                    return next.handle(req);
+                    const nextHandler = next.handle(req);
+
+                    nextHandler.subscribe((event: HttpEvent<any>) => {
+                        if(event.type === HttpEventType.Response) {
+                            console.log("access-control-allow-origin", event.headers.get("access-control-allow-origin"));
+                            console.log("x-content-type-options", event.headers.get("x-content-type-options"));
+                            console.log("content-encoding", event.headers.get("content-encoding"));
+                        }
+                    })
+
+                    return nextHandler;
                 }
 
                 const modifiedReq = req.clone({
                     params: new HttpParams().set('auth', user.token)
                 });
+
 
                 return next.handle(modifiedReq);
             })
